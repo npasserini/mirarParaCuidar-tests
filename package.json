@@ -1,0 +1,25 @@
+{
+  "name": "mirar-para-cuidar-tests",
+  "version": "0.0.1",
+  "description": "Tests para validar la API del TP 1er semestre 2016 de Arq2 de la UNQ - Mirar para cuidar",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npasserini/mirarParaCuidar-tests.git"
+  },
+  "keywords": [
+    "test",
+    "api"
+  ],
+  "author": "npasserini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/npasserini/mirarParaCuidar-tests/issues"
+  },
+  "homepage": "https://github.com/npasserini/mirarParaCuidar-tests#readme",
+  "devDependencies": {
+  }
+}
