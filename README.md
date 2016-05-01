@@ -32,11 +32,22 @@ npm install
 ```
 
 # Correr los Tests
+## Configuración
+Modificar el archivo `config.json` para que la url apunte al servidor que desean testear. Ejemplo:
+```
+{
+  "url": "http://localhost:9200"
+}
+```
+
+## Ejecutar!
+Tener corriendo el servidor con la API y luego ejecutar:
 ```
 npm test
 ```
 
 # Cómo contribuir
-1. Faltan aún muchos tests por hacer, así que cualquier aporte es bienvenido.
+1. Faltan aún muchos tests por hacer, así que cualquier aporte es bienvenido. Sólo es necesario clonar el repo y enviar un pull request.
 2. Si hay diferencias en cuanto a lo que ustedes creen que debería ser la API no dejen de comunicármelo o incluso levantar un issue para que lo discutamos ahí entre todos.
 3. Deberíamos armar una documentación de la API, posiblemente basada en blueprint.
+4. Extenderlo para hacer pruebas de performance.

@@ -1,10 +1,10 @@
 import supertest from 'supertest'
 import 'should'
 import 'should-http'
-
+import config from '../config.json'
 // This agent refers to PORT where program is runninng.
 
-const server = supertest.agent("http://localhost:9200")
+const server = supertest.agent(config.url)
 
 // UNIT test begin
 
