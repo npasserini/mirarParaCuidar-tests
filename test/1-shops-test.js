@@ -8,27 +8,33 @@ const server = supertest.agent("http://localhost:9200")
 
 // UNIT test begin
 
-describe("Resource /shops", () => {
+describe("Resource /shops", function() {
+  describe("GET /shops", function() {
+    var res
+    before(function(done) {
+      server.get("/shops").end((err,response) => {
+        res = response
+        done()
+      })
+    })
 
-  // #1 should return home page
-
-  it("GET should return a list of shops",function(done){
-
-    // calling home page api
-    server.get("/shops").end((err,res) => {
-      res.status.should.equal(200)
-      res.should.be.json()
+    it("should be OK", function() { res.status.should.equal(200) })
+    it("should return a json", function() { res.should.be.json() })
+    it("body should be an object with paging and items", function() {
       res.body.should.be.an.Object()
       res.body.should.have.keys('items', 'paging')
+    })
+    it("body.items should be a list of shops", function() {
       res.body.items.should.be.an.Array()
       res.body.items.forEach(item => {
         item.should.be.an.Object()
         item.should.have.keys('latitude', 'longitude', 'name', 'address', 'location', 'id')
       })
+    })
 
-      console.log(res.body)
-      done()
+    it("body.paging should be an object with limit, offset and total", function() {
+      res.body.paging.should.be.an.Object()
+      res.body.paging.should.have.keys('limit', 'offset', 'total')
     })
   })
-
 })
