@@ -51,12 +51,12 @@ describe("Resource /shops", function() {
           longitude: -58.3979462,
         })
         .end((err,response) => {
-          console.log(response)
           res = response
+          console.log(res)
           done()
         })
     })
 
-    it("should be OK", function() { res.status.should.equal(200) })
+    it("should be OK", function() { res.status.should.equal(201) })
   })
 })
