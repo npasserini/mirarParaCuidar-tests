@@ -40,10 +40,18 @@ Modificar el archivo `config.json` para que la url apunte al servidor que desean
 }
 ```
 
+Esta configuración se puede overridear desde la línea de comando (ver próxima sección).
+
 ## Ejecutar!
 Tener corriendo el servidor con la API y luego ejecutar:
 ```
 npm test
+```
+
+Para seleccionar una dirección alternativa a la que está configurada en config.json, se debe setear la variable de entorno URL. Por ejemplo:
+
+```
+URL=localhost:8080 && npm test
 ```
 
 # Cómo contribuir
