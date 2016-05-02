@@ -4,7 +4,8 @@ import 'should-http'
 import config from '../config.json'
 // This agent refers to PORT where program is runninng.
 
-const server = supertest.agent(config.url)
+const url = process.env.URL || config.url
+const server = supertest.agent(url)
 
 // UNIT test begin
 
@@ -36,5 +37,26 @@ describe("Resource /shops", function() {
       res.body.paging.should.be.an.Object()
       res.body.paging.should.have.keys('limit', 'offset', 'total')
     })
+  })
+
+  describe("POST /shops", function() {
+    var res
+    before(function(done) {
+      server.post("/shops")
+        .send({
+          name: 'Coto San Cristóbal',
+          address: 'Av. San Juan 2168',
+          location: 'San Cristóbal, CABA',
+          latitude: -34.6230723,
+          longitude: -58.3979462,
+        })
+        .end((err,response) => {
+          console.log(response)
+          res = response
+          done()
+        })
+    })
+
+    it("should be OK", function() { res.status.should.equal(200) })
   })
 })
