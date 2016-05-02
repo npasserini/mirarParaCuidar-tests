@@ -40,23 +40,31 @@ describe("Resource /shops", function() {
   })
 
   describe("POST /shops", function() {
+    var shop = {
+      name: 'Coto San Cristóbal',
+      address: 'Av. San Juan 2168',
+      location: 'San Cristóbal, CABA',
+      latitude: -34.6230723,
+      longitude: -58.3979462,
+    }
     var res
     before(function(done) {
       server.post("/shops")
-        .send({
-          name: 'Coto San Cristóbal',
-          address: 'Av. San Juan 2168',
-          location: 'San Cristóbal, CABA',
-          latitude: -34.6230723,
-          longitude: -58.3979462,
-        })
+        .send(shop)
         .end((err,response) => {
           res = response
-          console.log(res)
           done()
         })
     })
 
     it("should be OK", function() { res.status.should.equal(201) })
+    it("should return the location of the created product", function(done) {
+      const server2 = supertest.agent(res.headers.location)
+        .get('')
+        .end(function(err, response) {
+          response.status.should.equal(200)
+          done()
+        })
+    })
   })
 })
