@@ -4,6 +4,7 @@ import 'should-http'
 import config from '../config.json'
 // This agent refers to PORT where program is runninng.
 
+
 const url = process.env.URL || config.url
 const server = supertest.agent(url)
 
@@ -62,7 +63,8 @@ describe("Resource /shops", function() {
       const server2 = supertest.agent(res.headers.location)
         .get('')
         .end(function(err, response) {
-          response.status.should.equal(200)
+          response.status.should.equal(200,
+            `The POST request returned an invaled location header URL: ${res.headers.location}. The URL should be GETable and return HTTP status 200.`)
           done()
         })
     })

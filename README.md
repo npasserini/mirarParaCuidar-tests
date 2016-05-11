@@ -51,7 +51,7 @@ npm test
 Para seleccionar una dirección alternativa a la que está configurada en config.json, se debe setear la variable de entorno URL. Por ejemplo:
 
 ```
-URL=localhost:8080 && npm test
+export URL=localhost:8080 && npm test
 ```
 
 # Cómo contribuir
