@@ -60,8 +60,7 @@ describe("Resource /shops", function() {
 
     it("should be OK", function() { res.status.should.equal(201) })
     it("should return the location of the created product", function(done) {
-      const server2 = supertest.agent(res.headers.location)
-        .get('')
+      server.get(res.headers.location)
         .end(function(err, response) {
           response.status.should.equal(200,
             `The POST request returned an invaled location header URL: ${res.headers.location}. The URL should be GETable and return HTTP status 200.`)
