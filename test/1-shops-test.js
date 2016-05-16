@@ -1,22 +1,12 @@
-import supertest from 'supertest'
-import 'should'
-import 'should-http'
-import config from '../config.json'
-// This agent refers to PORT where program is runninng.
+import {server, resource} from './test-fwk'
 
-
-const url = process.env.URL || config.url
-const server = supertest.agent(url)
-
-// UNIT test begin
-
-describe("Resource /shops", function() {
+resource("shops", function() {
   describe("GET /shops", function() {
     var res
     before(function(done) {
       server.get("/shops").end((err,response) => {
         res = response
-        done()
+        done(err)
       })
     })
 
@@ -54,7 +44,7 @@ describe("Resource /shops", function() {
         .send(shop)
         .end((err,response) => {
           res = response
-          done()
+          done(err)
         })
     })
 

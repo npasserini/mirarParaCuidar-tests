@@ -1,30 +1,26 @@
-import supertest from 'supertest'
-import 'should'
-import 'should-http'
-import config from '../config.json'
+import {server, resource, config} from './test-fwk'
+const { foundPrices } = config
 
-const url = process.env.URL || config.url
-const server = supertest.agent(url)
-
-describe("Resource /found_prices", function() {
-  describe("POST /found_prices", function() {
+resource(foundPrices, function() {
+  describe.skip(`POST /${foundPrices}`, function() {
     var foundPrice = {
-      product_id: 7501234512343,
+      product_id: '7501234512343',
       price: 23.50,
       datetime: new Date().toJSON()
     }
     var res
     before(function(done) {
-      server.post("/found_prices")
+      server.post(`/${foundPrices}`)
         .send(foundPrice)
         .end((err,response) => {
-          console.log(response)
           res = response
-          done()
+          done(err)
         })
     })
 
-    it("should be OK", function() { res.status.should.equal(201) })
+    it("should be OK", function() {
+      res.status.should.equal(201, `Http error message: "${res.error.text}"`)
+    })
     it("should return the location of the created product", function(done) {
       server.get(res.headers.location)
         .end(function(err, response) {
