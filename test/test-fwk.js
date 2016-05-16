@@ -1,7 +1,8 @@
 import supertest from 'supertest'
 import 'should'
 import 'should-http'
-export config from '../config.json'
+import config from '../config.json'
+export {config}
 
 const url = process.env.URL ||
   process.env.PORT
