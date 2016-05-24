@@ -6,8 +6,8 @@ export {config}
 
 const url = process.env.URL ||
   process.env.PORT
-    ? `localhost:${process.env.PORT}`
-    : config.url
+    ? `${config.host}:${process.env.PORT}`
+    : `${config.host}:${config.port}${config.basePath}`;
 export const server = supertest.agent(url)
 
 export function resource(resourceName, description) {
