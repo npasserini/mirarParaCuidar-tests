@@ -1,4 +1,5 @@
 import {server, resource} from './test-fwk'
+import {basePath} from '../config.json'
 
 resource("shops", function() {
   describe("GET /shops", function() {
@@ -50,7 +51,7 @@ resource("shops", function() {
 
     it("should be OK", function() { res.status.should.equal(201) })
     it("should return the location of the created product", function(done) {
-      server.get(res.headers.location)
+      server.get(res.headers.location.substring(basePath.length))
         .end(function(err, response) {
           response.status.should.equal(200,
             `The POST request returned an invaled location header URL: ${res.headers.location}. The URL should be GETable and return HTTP status 200.`)

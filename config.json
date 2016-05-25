@@ -1,4 +1,6 @@
 {
-  "url": "http://localhost:9200",
+  "host": "http://localhost",
+  "port": "9200",
+  "basePath": "/api/v1",
   "foundPrices": "found-prices"
 }
