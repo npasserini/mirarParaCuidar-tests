@@ -5,9 +5,9 @@ import config from '../config.json'
 export {config}
 
 const url = process.env.URL ||
-  process.env.PORT
+  (process.env.PORT
     ? `${config.host}:${process.env.PORT}`
-    : `${config.host}:${config.port}${config.basePath}`;
+    : `${config.host}:${config.port}${config.basePath}`);
 export const server = supertest.agent(url)
 
 export function resource(resourceName, description) {
